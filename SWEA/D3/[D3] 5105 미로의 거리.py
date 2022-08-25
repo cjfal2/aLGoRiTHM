@@ -1,5 +1,6 @@
 def start(arr):
     '''
+    시작점을 찾는 함수
     x : 행 좌표
     y : 열 좌표
     return : x,y
@@ -11,6 +12,7 @@ def start(arr):
 
 def bfs(i,j,N):
     '''
+    너비 우선 탐색 함수
     i : 시작점 x좌표
     j : 시작점 y좌표
     N : 미로 변의 크기
@@ -35,7 +37,8 @@ def bfs(i,j,N):
 for tc in range(int(input())):
     N = int(input())
     maze = [list(map(int,input())) for _ in range(N)] # 잘라서 넣기
-    
+    for i in maze:
+        print(i)
     stx,sty = start(maze)
 
     print(f'#{tc+1} {bfs(stx,sty,N)}')
