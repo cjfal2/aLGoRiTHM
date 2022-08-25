@@ -2,12 +2,12 @@ K = int(input())
 Q = [[],[],[],[]] #동1서2남3북4
 od = 0
 for _ in range(6):
-    od+=1
+    od+=1 # 받는 순서
     A,B=map(int,input().split())
-    Q[A-1]+=[(B,od)]
+    Q[A-1]+=[[B,od]]
 
-P = []
-G = []
+P = [] # 꺾인 곳
+G = [] # 평평한 곳
 for q in Q:
     if len(q)==2:
         P.append(q)
