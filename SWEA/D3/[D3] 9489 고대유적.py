@@ -1,6 +1,3 @@
-import sys
-sys.stdin = open('koreauni.txt','r')
-############
 TC = int(input())
 for tc in range(TC):
     #인풋
