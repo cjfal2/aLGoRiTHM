@@ -2,27 +2,40 @@ def find(want):
     Q = []
     for i in range(N):
         for j in range(N):
-            if L[i][j] == want:
-                Q.append([i, j])
+            if shark[i][j] == want:
+                a = abs(pong[0]-i)+abs(pong[1]-j)
+                Q.append([i, j, a])
+    Q.sort(key = lambda x: x[1])
+    Q.sort(key = lambda x: x[0])
+    Q.sort(key = lambda x: x[2])
     return Q
 
 
-def cal():
-    
-
-
+def ppp():
+    for i in range(N):
+        for j in range(N):
+            if shark[i][j] == 9:
+                return [i, j]
 
 
 N = int(input())
-L = [list(map(int, input().split())) for _ in range(N)]
+shark = [list(map(int, input().split())) for _ in range(N)]
 visited = [[0 for _ in range(N)] for _ in range(N)]
-pong = find(9)[0]
-one = find(1)
-two = find(2)
-three = find(3)
-four = find(4)
-five = find(5)
-six = find(6)
+pong = ppp()
+visited[pong[0]][pong[1]] = 1
+size = 2
+q = [pong]
+while 1:
+    x, y = q.pop(0)
+    for dx, dy in [[1,0],[-1,0],[0,1],[0,-1]]:
+        nx = x + dx
+        ny = y + dy
+        if N > nx >= 0 and N > ny >= 0 and shark[nx][ny] <= size:
+            
+
+
+
+
 
 
 
