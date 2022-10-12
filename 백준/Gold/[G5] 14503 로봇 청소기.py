@@ -27,12 +27,6 @@ while 1:
     if pan[s][g] == 0:
         pan[s][g] = 2 # 청소한 곳은 2로 바꿈
 
-    # 반대쪽이 벽인지 체크, 벽이면 True
-    bds, bdg = bande.get(dix)
-    check = False
-    if pan[s+bds][g+bdg] == 1:
-        check = True
-
     # for else 구문을 사용할 것임
     for ds, dg, new_dix in news.get(dix): # 현재 방향에서 얻은 news 리스트를 순회
         ns, ng = s + ds, g + dg
@@ -43,13 +37,15 @@ while 1:
             break # 여기서 브레이크를 걸면 for else 구문 다 탈출
 
     else: # for else 구문이라서 if에 아무것도 안걸렸다면 여기로 옴
-        if check: # 뒤가 벽이면 while문 탈출
+        # 반대쪽이 벽인지 체크, 벽이면 True
+        bds, bdg = bande.get(dix)
+        if pan[s+bds][g+bdg] == 1:
             break
         else: # 땅이면 뒤로가기
             s += bds
             g += bdg
 
-total = 0
-for i in pan:
-    total += i.count(2) # 청소한 곳이 2니까 2를 세줌
-print(total)
+for v in pan:
+    print(v)
+
+print(sum(pan, []).count(2)) # 권용재식 카운트 for 2차원배열
