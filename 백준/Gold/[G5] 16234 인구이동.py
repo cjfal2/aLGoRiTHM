@@ -26,7 +26,7 @@ for tt in range(2000):
                 temp = [pan[i][j]] # 인구수 담기
                 deca = [(i, j)] # 인구수를 바꿀 좌표를 담기
                 visited[i][j] = 1
-                q = deque((i, j))
+                q = [(i, j)]
                 while q:
                     x, y = q.popleft()
                     for dx, dy in [[1, 0], [-1, 0], [0, 1], [0, -1]]:
