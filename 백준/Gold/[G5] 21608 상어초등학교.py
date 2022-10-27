@@ -7,6 +7,8 @@ def find(p, arr):
     base를 채우는 함수
     빈칸을 찾고 그 빈칸에서 4방향을 확인
     확인하는 것: 좋아하는 친구가 몇명인지, 빈칸이 몇개인지
+
+    베이스 xy에 뭐 숫자가 있으면 옆 4방향 탐색??
     """
     inform = [] # 빈칸들의 정보
     for x in range(N):
@@ -17,7 +19,7 @@ def find(p, arr):
                 for dx, dy in [[1, 0], [-1, 0], [0, 1], [0, -1]]: # 델타 탐색
                     nx, ny = x + dx, y + dy
                     if N > nx >= 0 and N > ny >= 0: # 범위 내에서
-                        if not base[nx][ny]: # 델타가 빈칸이면
+                        if not base[nx][ny]: # 그 빈칸의 상/하/좌/우 가 빈칸이면
                             temp -= 1 # 빈칸수를 음수로 세줌 (정렬을 위해)
                         else:
                             if base[nx][ny] in arr:
@@ -36,7 +38,7 @@ base_dic = dict() # 정보를 담아서 마지막에 만족도를 얻기위해 �
 
 for k in range(N**2): # N의 2제곱 만큼 인풋이 들어옴
     t, *L = map(int, input().strip().split()) # 인풋을 숫자, 좋아하는애들(리스트)로 받아줌
-    base_dic[t] = L # 베이스딕셔너리에 저장
+    base_dic[t] = L # 베이스딕셔너리에 저장   {4: [2,5,1,7]}
     if k == 0:
         base[1][1] = t # 처음엔 무조건 1, 1 자리에 저장됨
     else: # 처음이 아니라면
