@@ -3,6 +3,13 @@ from copy import deepcopy
 
 news = [[],[-1, 0],[-1, -1],[0, -1],[1, -1],[1, 0],[1, 1],[0, 1],[-1, 1]]
 
+def find(t, pan):
+    for x in range(4):
+        for y in range(4):
+            if pan[x][y][0] == t:
+                return x, y, True
+    return False, False, False
+
 def dfs(xx, yy, su, ocean):
     global co
     co = max(co, su)
@@ -10,15 +17,7 @@ def dfs(xx, yy, su, ocean):
     ocean[xx][yy][0] = "S"
 
     for target in range(1, 17):
-        flag = False
-        for x in range(4):
-            for y in range(4):
-                if ocean[x][y][0] == target:
-                    fish_x, fish_y = x, y
-                    flag = True
-                    break
-            if flag:
-                break
+        fish_x, fish_y, flag = find(target, ocean)
         if flag:
             dix = ocean[fish_x][fish_y][1] - 1
             while 1:
