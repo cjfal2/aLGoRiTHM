@@ -37,54 +37,43 @@ news = {
     8: [-1, 1],
 }
 
-def dolgi(f, pan):
-    for x in range(4):
-        for y in range(4):
-            if pan[x][y] == f:
-                dix = inform.get(f)
-                while 1:
-                    dx, dy = news.get(dix)
-                    if 0 <= x+dx < 4 and 0 <= y+dy < 4 and pan[x+dx][y+dy] != 'S':
-                        pan[x][y], pan[x+dx][y+dy] = pan[x+dx][y+dy], pan[x][y]
-                        inform[f] = dix
-                        return
-                    else:
-                        dix += 1
-                        if dix>8:
-                            dix = 1
-
-def runrun(a):
-    for f in range(1,17):
-        dolgi(f, a)
-
 def dfs(xx,yy,dd,su,depth,seacopy):
     global co
-    print("-------depth:",depth)
-    # if depth == 18:
-    #     return
+    su += seacopy[xx][yy]
     co = max(co, su)
     seacopy[xx][yy] = 'S'
-    print("---------------")
-    for v in seacopy:
-        print(v)
-    runrun(seacopy)
-    i = 0
+
+    for f in range(1,17):
+        move_list = []
+        for x in range(4):
+            if f in move_list:
+                break
+            for y in range(4):
+                if f in move_list:
+                    break
+                if seacopy[x][y] == f and f not in move_list:
+                    dix = inform.get(f)
+                    while 1:
+                        dxx, dyy = news.get(dix)
+                        if 0 <= x+dxx < 4 and 0 <= y+dyy < 4 and seacopy[x+dxx][y+dyy] != "S":
+                            seacopy[x][y], seacopy[x+dxx][y+dyy] = seacopy[x+dxx][y+dyy], seacopy[x][y]
+                            inform[f] = dix
+                            move_list.append(f)
+                            break
+                        else:
+                            dix += 1
+                            if dix>8:
+                                dix = 1
+    seacopy[xx][yy] = 0
     dx, dy = news.get(dd)
     nx, ny = xx, yy
-    while i != 5:
-        i += 1
+    for _ in range(3):
         nx+=dx
         ny+=dy
-        if 0 <= nx < 4 and 0 <= ny < 4 and seacopy[nx][ny] != 0 and seacopy[nx][ny] != "S":
+        if 0 <= nx < 4 and 0 <= ny < 4 and seacopy[nx][ny] != 0:
             nd = inform.get(seacopy[nx][ny])
-            mem = seacopy[nx][ny]
-            print("eat:", seacopy[nx][ny], "상어방향:", nd)
-            seacopy[xx][yy] = 0
-            for v in seacopy:
-                print(v)
-            print("=================")
-            print()
-            dfs(nx,ny,nd,su+mem,depth+1,deepcopy(seacopy))
+            dfs(nx,ny,nd,su,depth+1,deepcopy(seacopy))
+
 
 sea = [[] for _ in range(4)]
 inform = dict()
