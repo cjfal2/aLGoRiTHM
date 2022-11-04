@@ -1,5 +1,8 @@
-N, M = map(int, input().split())
-pan = [list(map(int, list(input()))) for _ in range(N)]
+import sys
+input = sys.stdin.readline
+
+N, M = map(int, input().strip().split())
+pan = [list(map(int, list(input().strip()))) for _ in range(N)]
 
 visited = [[False for _ in range(M)] for _ in range(N)]
 flag = False
