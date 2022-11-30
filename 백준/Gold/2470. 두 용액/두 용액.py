@@ -4,23 +4,19 @@ N = int(input())
 liquid = list(map(int, input().split()))
 liquid.sort()
 
-MIN = sys.maxsize
-start_point = 0
-end_point = N - 1
+pH, basic, acidic = sys.maxsize, 0, N -1
 
-while (start_point < end_point):
-    SUM = liquid[start_point] + liquid[end_point]
+while (basic < acidic):
+    mix = liquid[basic] + liquid[acidic]
 
-    if MIN > abs(SUM):
-        MIN = abs(SUM)
-        small = liquid[start_point]
-        big = liquid[end_point]
-        if not SUM:
+    if pH > abs(mix):
+        pH, neutral_s, neutral_l = abs(mix), liquid[basic], liquid[acidic]
+        if not mix:
             break
-    
-    if SUM < 0:
-        start_point += 1
+
+    if mix < 0:
+        basic += 1
     else:
-        end_point -= 1
+        acidic -= 1
         
-print(small, big)
+print(neutral_s, neutral_l)
