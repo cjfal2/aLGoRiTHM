@@ -26,7 +26,10 @@ def mixing():
 
 # 인풋 받고 바로 솔트 때려주고요 (이진탐색을 위해)
 N = int(input())
-liquid = list(map(int, input().split()))
-liquid.sort()
-
+liquid = sorted(list(map(int, input().split())))
+if liquid[0] >= 0:
+    print(liquid[0], liquid[1])
+    quit()
+if liquid[-1] <= 0:
+    print(liquid[N-2], liquid[N-1]) 
 print(*mixing()) # 중성작은거, 중성큰거를 출력
