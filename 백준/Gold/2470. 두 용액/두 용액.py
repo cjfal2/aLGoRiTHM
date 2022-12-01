@@ -31,5 +31,6 @@ if liquid[0] >= 0:
     print(liquid[0], liquid[1])
     quit()
 if liquid[-1] <= 0:
-    print(liquid[N-2], liquid[N-1]) 
+    print(liquid[N-2], liquid[N-1])
+    quit()
 print(*mixing()) # 중성작은거, 중성큰거를 출력
