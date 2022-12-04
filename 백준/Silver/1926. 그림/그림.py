@@ -1,5 +1,9 @@
-N, M = map(int, input().split())
-pictures = [list(map(int, input().split())) for _ in range(N)]
+from collections import deque
+import sys
+input = sys.stdin.readline
+
+N, M = map(int, input().strip().split())
+pictures = [list(map(int, input().strip().split())) for _ in range(N)]
 
 total = 0
 big_picture = 0
@@ -9,9 +13,10 @@ for n in range(N):
             total += 1
             co = 1
             pictures[n][m] = 0
-            q = [(n, m)]
+            q = deque()
+            q.append((n, m))
             while q:
-                x, y = q.pop(0)
+                x, y = q.popleft()
                 for dx, dy in [[1, 0], [0, 1], [-1, 0], [0, -1]]:
                     nx, ny = x + dx, y + dy
                     if N > nx >= 0 and M > ny >= 0 and pictures[nx][ny]:
