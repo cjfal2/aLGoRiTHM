@@ -20,7 +20,7 @@ visited = [[0 for _ in range(M)] for _ in range(N)]
 co = 0
 for n in range(N):
     for m in range(M):
-        if san[n][m] and not visited[n][m]:
+        if not visited[n][m] and san[n][m]:
             top = True
             bfs(n, m)
             if top:
