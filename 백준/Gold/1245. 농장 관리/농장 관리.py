@@ -25,9 +25,5 @@ for n in range(N):
             bfs(n, m)
             if top:
                 co += 1
-            # print(n, m, co)
-            # for v in visited:
-            #     print(v)
-            # print("---------------------")
 print(co)
                         
