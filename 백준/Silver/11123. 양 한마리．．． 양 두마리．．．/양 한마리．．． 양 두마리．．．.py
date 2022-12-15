@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 def bfs(i, j):
     global co
     co += 1
