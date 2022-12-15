@@ -2,8 +2,6 @@ import sys
 input = sys.stdin.readline
 
 def bfs(i, j):
-    global co
-    co += 1
     visited[i][j] = 1
     q = [(i, j)]
     while q:
@@ -24,5 +22,6 @@ for _ in range(int(input())):
         for m in range(M):
             if not visited[n][m] and sheep[n][m] == "#":
                 bfs(n, m)
+                co += 1
     print(co)
                         
