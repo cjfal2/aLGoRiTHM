@@ -1,13 +1,16 @@
+import sys
+input = sys.stdin.readline
+
 def find_set(x):
     while x != arr[x]:
         x = arr[x]
     return x
 
-for _ in range(int(input())):
-   N, M, p, q = map(int, input().split())
+for _ in range(int(input().strip())):
+   N, M, p, q = map(int, input().strip().split())
    edge = []
    for _ in range(M):
-      u, v, w = map(int, input().split())
+      u, v, w = map(int, input().strip().split())
       edge.append((w, u, v))
 
    edge.sort()
