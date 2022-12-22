@@ -4,12 +4,13 @@ if len(ducks)%5:
     quit()
 
 def duck():
-    duct = {'q': 0,'u': 1,'a': 2,'c': 3,'k': 4}
+    ductinary = {'q': 0,'u': 1,'a': 2,'c': 3,'k': 4}
     ori = [0 for _ in range(500)]
     ans = []
     for sori in ducks:
+        what = ductinary.get(sori)
         for i in range(500):
-            if ori[i] == duct.get(sori):
+            if ori[i] == what:
                 ori[i] += 1
                 if ori[i] == 5:
                     ori[i] = 0
