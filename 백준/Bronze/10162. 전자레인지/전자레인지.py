@@ -1,0 +1,5 @@
+N = int(input())
+A, N = divmod(N,300)
+B, N = divmod(N,60)
+C, N = divmod(N,10)
+print(A,B,C) if not N else print(-1)
