@@ -12,18 +12,13 @@ def dfs(start):
             dfs(i)
             s.pop()
 
-z = 0
 while 1:
-    if not z:
-        what = list(map(int, input().strip().split()))
-        z += 1
+    what = list(map(int, input().strip().split()))
     a = what.pop(0)
-    if not a:
+    if a == 0:
         quit()
     
     s = []
     memo = []
     dfs(0)
-    if z:
-        what = list(map(int, input().strip().split()))
-        print()
+    print()
