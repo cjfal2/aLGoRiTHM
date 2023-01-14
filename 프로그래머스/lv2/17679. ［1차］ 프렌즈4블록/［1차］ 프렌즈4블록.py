@@ -36,8 +36,10 @@ def solution(m, n, board):
         pan.append(p)
 
     flag = True
-    while flag:
+    while 1:
         mem, flag = pang(m, n)
+        if not flag:
+            break
         for x, y in mem:
             pan[x][y] = 0
             answer += 1
