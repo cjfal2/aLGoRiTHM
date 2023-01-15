@@ -6,10 +6,7 @@ def solution(m, n, board):
         for i in range(m-1):
             for j in range(n-1):
                 if pan[i][j] and pan[i][j] == pan[i][j+1] == pan[i+1][j+1] == pan[i+1][j]:
-                    memo.add((i, j))
-                    memo.add((i+1, j))
-                    memo.add((i, j+1))
-                    memo.add((i+1, j+1))
+                    memo.update([(i, j),(i+1, j),(i, j+1),(i+1, j+1)])
                     f = True
                 
         return list(memo), f
@@ -35,7 +32,6 @@ def solution(m, n, board):
             p.append(w)
         pan.append(p)
 
-    flag = True
     while 1:
         mem, flag = pang(m, n)
         if not flag:
