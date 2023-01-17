@@ -1,23 +1,21 @@
-ducks = input()
-if len(ducks)%5:
+s = input()
+if len(s)%5:
     print(-1)
     quit()
-
-def duck():
-    ductinary = {'q': 0,'u': 1,'a': 2,'c': 3,'k': 4}
-    ori = [0 for _ in range(500)]
-    ans = []
-    for sori in ducks:
-        what = ductinary.get(sori)
+def d():
+    y={'q':0,'u':1,'a':2,'c':3,'k':4}
+    o=[0 for _ in range(500)]
+    a=[]
+    for r in s:
+        w = y.get(r)
         for i in range(500):
-            if ori[i] == what:
-                ori[i] += 1
-                if ori[i] == 5:
-                    ori[i] = 0
-                    if i not in ans:
-                        ans.append(i)
+            if o[i] == w:
+                o[i] += 1
+                if o[i] == 5:
+                    o[i] = 0
+                    if i not in a:
+                        a.append(i)
                 break
-
-    print(len(ans)) if len(ans) and len(set(ori)) == 1 else print(-1)
+    print(len(a)) if len(a) and len(set(o)) == 1 else print(-1)
     return
-duck()
+d()
