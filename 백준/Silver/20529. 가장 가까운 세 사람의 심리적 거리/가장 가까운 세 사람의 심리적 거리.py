@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 def cal(arr):
     temp = 0
     for k in range(4):
