@@ -1,0 +1,1 @@
+print(1) if len(set(list(input()))) == 1 else print(0)
