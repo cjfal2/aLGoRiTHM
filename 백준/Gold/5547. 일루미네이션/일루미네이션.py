@@ -4,15 +4,15 @@ oddeven = {
 }
 
 
+def check_around(p, q):
+    global ans
+    for dp, dq in oddeven.get(p%2):
+        np, nq = p + dp, q + dq
+        if pan[np][nq] == 1:
+            ans += 1
+
+
 def bfs_zero(i, j):
-
-    def check_around(p, q):
-        global ans
-        for dp, dq in oddeven.get(p%2):
-            np, nq = p + dp, q + dq
-            if pan[np][nq] == 1:
-                ans += 1
-
     q = [(i, j)]
     visited[i][j] = 1
     check_around(i, j)
@@ -44,24 +44,18 @@ def bfs_one(i, j):
 
 M, N = map(int, input().split())
 pan = [[2 for _ in range(M+2)]] +  [[2] + list(map(int, input().split())) + [2] for _ in range(N)] + [[2 for _ in range(M+2)]]
-visited = [[0 for _ in range(M+2)]] + [[0] + [0 for _ in range(M)] + [0] for _ in range(N)] + [[0 for _ in range(M+2)]]
+visited = [[0 for _ in range(M+2)] for _ in range(N+2)]
 
 ans = 0
 
-for n in (1, N): # 맨위 맨아래만 체크
+for n in (1, N):
     for m in range(1, M+1):
         if not visited[n][m]:
-            if pan[n][m]:
-                bfs_one(n, m)
-            else:
-                bfs_zero(n, m)
+            bfs_one(n, m) if pan[n][m] else bfs_zero(n, m)
 
-for m in (1, M): # 맨왼, 맨오른만 체크
-    for n in range(1, N+1):
+for m in (1, M):
+    for n in range(2, N):
         if not visited[n][m]:
-            if pan[n][m]:
-                bfs_one(n, m)
-            else:
-                bfs_zero(n, m)
+            bfs_one(n, m) if pan[n][m] else bfs_zero(n, m)
 
 print(ans)
