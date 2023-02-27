@@ -17,7 +17,7 @@ def bfs_zero(i, j):
     visited[i][j] = 1
     check_around(i, j)
     while q:
-        x, y = q.pop(0)
+        x, y = q.pop()
         for dx, dy in oddeven.get(x%2):
             nx, ny = x + dx, y + dy
             if not visited[nx][ny] and pan[nx][ny] == 0:
@@ -31,7 +31,7 @@ def bfs_one(i, j):
     q = [(i, j)]
     visited[i][j] = 1
     while q:
-        x, y = q.pop(0)
+        x, y = q.pop()
         for dx, dy in oddeven.get(x%2):
             nx, ny = x + dx, y + dy
             if not visited[nx][ny]:
