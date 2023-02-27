@@ -1,11 +1,11 @@
 def dfs(x, gold):
     global flag
-
-
+    
     if flag:
         return
 
     room = info.get(x)
+
     if room[0] == "T":
         if gold >= room[1]:
             gold -= room[1]
@@ -21,10 +21,10 @@ def dfs(x, gold):
     if x == N:
         flag = True
         return
-    else:
-        for w in G[x]:
-            if not visited[w]:
-                dfs(w, gold)
+
+    for w in G[x]:
+        if not visited[w]:
+            dfs(w, gold)
 
 while 1:
     N = int(input())
