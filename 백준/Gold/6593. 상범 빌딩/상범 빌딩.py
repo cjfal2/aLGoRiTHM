@@ -1,7 +1,7 @@
 import sys
 from collections import deque
 input = sys.stdin.readline
-
+delta = [[0, 0, 1], [0, 1, 0], [0, 0, -1], [0, -1, 0], [1, 0, 0], [-1, 0, 0]]
 
 def bfs(sero1, garo1):
     visited = []
@@ -14,7 +14,7 @@ def bfs(sero1, garo1):
     q.append((hh, gg, ss))
     while q:
         v, x, y = q.popleft()
-        for dh, dx, dy in [[0, 0, 1], [0, 1, 0], [0, 0, -1], [0, -1, 0], [1, 0, 0], [-1, 0, 0]]:
+        for dh, dx, dy in delta:
             nh = v + dh
             nx = x + dx
             ny = y + dy
