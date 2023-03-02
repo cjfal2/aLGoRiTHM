@@ -1,7 +1,7 @@
 import sys
 from collections import deque
 input = sys.stdin.readline
-delta = [[0, 0, 1], [0, 1, 0], [0, 0, -1], [0, -1, 0], [1, 0, 0], [-1, 0, 0]]
+delta = ((0, 0, 1), (0, 1, 0), (0, 0, -1), (0, -1, 0), (1, 0, 0), (-1, 0, 0))
 
 def bfs(sero1, garo1):
     visited = []
@@ -38,7 +38,7 @@ while 1:
     for u in range(high):
         for k in range(g+1):
             a = list(input().strip())
-            if a == []:
+            if not a:
                 break
             if flag:
                 for aa in range(len(a)):
