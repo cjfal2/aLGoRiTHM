@@ -1,6 +1,3 @@
-import sys
-sys.setrecursionlimit(10000000)
-
 def dfs(x):
     visited[x] = 1
     for w in G[x]:
@@ -19,10 +16,9 @@ for i in range(1, N+1):
 
 road = list(map(int, input().split()))
 visited = [0 for _ in range(N+1)]
-# print(G)
 dfs(road[0])
 
-for num in road:
+for num in set(road):
     if not visited[num]:
         print("NO")
         quit()
