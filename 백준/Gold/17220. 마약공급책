@@ -1,0 +1,44 @@
+'''
+0. 알파벳의 그래프 표현은 어떻게? 각 마약 공급책은 A부터 순서대로 알파벳 대문자로 표현된다. -> 아스키 코드
+1. 마약의 원산지는 '다른 공급책에게 공급받지 않으면서 마약을 공급하는 마약공급책'이다.
+-> 마약의 원산지 찾기
+2. 원산지 부터 dfs/bfs
+3. 방문 안한 visited 찾기
+'''
+
+N, M = map(int, input().split()) # 마약 공급책의 수 N(1 ≤ N ≤ 26), 마약 공급책의 관계 수 M(1 ≤ M ≤ 600)
+G = [[] for _ in range(N)] # 공급책 리스트
+head = [0 for _ in range(N)] # 원산지를 찾을 것
+visited = [0 for _ in range(N)] # 방문 리스트
+for _ in range(M):
+    a, b = map(lambda x: ord(x)-65, input().split())
+    G[a].append(b)
+    head[b] = 1
+
+def dfs1(x): # 경찰에 잡혀간애들을 처리한다. 잡혔으면 -1, 산하는 1
+    visited[x] = 1 if visited[x] != -1 else  -1
+    for w in G[x]:
+        if visited[w] < 1 and w not in info:
+            dfs1(w)
+
+def dfs2(x): # 마약 원산지가 여러개일 때를 처리한다. 공급 받을 수 있는 애들은 2, 원산지는 3
+    visited[x] = 2 if visited[x] != 3 else  -1
+    for w in G[x]:
+        if visited[w] != -1 and w not in info:
+            dfs2(w)
+
+
+n, *info = list(input().split())
+new_info = []
+for word in info:
+    a = ord(word)-65
+    new_info.append(a)
+    visited[a] = -1
+    dfs1(a)
+
+for idx, num in enumerate(head):
+    if not num and idx not in new_info:
+        visited[idx] = 3
+        dfs2(idx)
+
+print(visited.count(2)) # 공급책 (2) 들을 세준다.
