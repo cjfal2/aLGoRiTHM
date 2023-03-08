@@ -11,9 +11,10 @@ def solution(genres, plays):
         else:
             info[gen][0] += plays[idx]
             info[gen][1].append((plays[idx], idx))
-            info[gen][1].sort(reverse=True)
+    
     
     for x, arr in sorted(info.values(), reverse=True):
+        arr.sort(reverse=True)
         if len(arr) == 1:
             answer.append(arr[0][1])
         else:
