@@ -1,4 +1,3 @@
-'''python
 def cal(p, s):
     if p == "*": return s*s
     elif p == "+": return s+s
@@ -19,4 +18,4 @@ while q:
             visited.add(nx)
             q.append((nx, info+dx))
 print(-1)
-'''
+
