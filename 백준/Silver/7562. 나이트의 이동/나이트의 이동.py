@@ -1,13 +1,18 @@
-for tc in range(int(input())):
-    N = int(input())
-    pan = [[0 for _ in range(N)] for _ in range(N)]
-    sx, sy = map(int, input().split())
-    ex, ey = map(int, input().split())
+import sys
+input = sys.stdin.readline
+from collections import deque
 
-    q = [(sx, sy)]
+
+for tc in range(int(input().strip())):
+    N = int(input().strip())
+    pan = [[0 for _ in range(N)] for _ in range(N)]
+    sx, sy = map(int, input().strip().split())
+    ex, ey = map(int, input().strip().split())
+
+    q = deque([(sx, sy)])
     pan[sx][sy] = 1
     while q:
-        x, y = q.pop(0)
+        x, y = q.popleft()
         if x == ex and y == ey:
             print(pan[x][y]-1)
             break
