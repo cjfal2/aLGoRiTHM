@@ -1,3 +1,7 @@
+import sys
+input = sys.stdin.readline
+from collections import deque
+
 def isPrime(number):
     '''
     에라토스테네스의 체
@@ -16,10 +20,10 @@ def check(n):
 
 
 def bfs(num):
-    q = [(num, 0)]
-    visited = set(q)
+    q = deque([(num, 0)])
+    visited = set([num])
     while q:
-        x, cnt = q.pop(0)
+        x, cnt = q.popleft()
         for i in [x//3, x//2, x+1, x-1]:
             if i not in visited and 1000001 >= i > 0:
                 if check(i):
