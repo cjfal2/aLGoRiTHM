@@ -2,6 +2,7 @@ import sys
 input = sys.stdin.readline
 from collections import deque
 
+
 def isPrime(number):
     '''
     에라토스테네스의 체
@@ -9,14 +10,17 @@ def isPrime(number):
     '''
     for m in range(2, int(number ** 0.5) + 1):
         if not number % m:     
-            return True
-    return False
+            return False # 소수가 아니다.
+    return True # 소수가 맞다.
 
 
 def check(n):
+    '''
+    범위 체크 & 소수 체크
+    '''
     if start <= n <= end:
-        return isPrime(n)
-    return True
+        return isPrime(n) # 소수가 맞으면 True, 아니면 False
+    return False # 범위가 아니면 False
 
 
 def bfs(num):
@@ -26,7 +30,7 @@ def bfs(num):
         x, cnt = q.popleft()
         for i in [x//3, x//2, x+1, x-1]:
             if i not in visited and 1000001 >= i > 0:
-                if check(i):
+                if not check(i):
                     q.append((i, cnt+1))
                     visited.add(i)
                 else:
@@ -36,7 +40,7 @@ def bfs(num):
 
 for _ in range(int(input())):
     N, start, end = map(int, input().split()) # 전체 수 N, 목표 범위인 자연수 start, end
-    if not check(N):
+    if check(N):
         print(0)
         continue
 
