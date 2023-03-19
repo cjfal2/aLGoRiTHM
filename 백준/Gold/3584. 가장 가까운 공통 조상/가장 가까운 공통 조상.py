@@ -2,14 +2,15 @@ import sys
 input = sys.stdin.readline
 sys.setrecursionlimit(10000000)
 
-def dfs(x, arr):
+def dfs(x):
     visited.add(x)
-    for w in G[x]:
-        if w not in visited:
-            arr.append(w)
-            dfs(w, arr)
-    else:
-        return arr
+    q = [x]
+    while q:
+        for w in G[q.pop()]:
+            if w not in visited:
+                q.append(w)
+                visited.add(w)
+    return visited
         
 
 def check():
@@ -47,7 +48,7 @@ for test_case in range(int(input().strip())):
     a, b = map(int, input().strip().split())
     
     visited = set()
-    temp = set(dfs(a, [a]))
+    temp = set(dfs(a))
     # print(temp)
     dfs2(b)
     
