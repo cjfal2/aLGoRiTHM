@@ -1,8 +1,8 @@
 import sys
 input = sys.stdin.readline
-sys.setrecursionlimit(10000000)
 
-def dfs(x):
+def dfs1(x):
+    visited = set()
     visited.add(x)
     q = [x]
     while q:
@@ -11,14 +11,7 @@ def dfs(x):
                 q.append(w)
                 visited.add(w)
     return visited
-        
-
-def check():
-    for v in temp[0]:
-        for h in temp[1]:
-            if v == h:
-                print(v)
-                return
+    
 
 def dfs2(x):
     if x in temp:
@@ -44,11 +37,8 @@ for test_case in range(int(input().strip())):
     for _ in range(N-1):
         a, b = map(int, input().strip().split())
         G[b].append(a)
-    # print(G)
     a, b = map(int, input().strip().split())
     
-    visited = set()
-    temp = set(dfs(a))
-    # print(temp)
+    temp = dfs1(a)
     dfs2(b)
     
