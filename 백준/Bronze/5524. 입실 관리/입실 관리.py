@@ -1,2 +1,3 @@
-for _ in range(int(input())):
-    print(input().lower())
+q=input
+for _ in range(int(q())):
+    print(q().lower())
