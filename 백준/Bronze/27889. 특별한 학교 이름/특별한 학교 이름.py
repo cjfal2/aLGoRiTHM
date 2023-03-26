@@ -4,4 +4,4 @@ a={
     'KIS': 'Korea International School',
     'SJA': 'St. Johnsbury Academy'
 }
-print(a.get(input()))
+print(a[input()])
