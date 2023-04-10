@@ -7,7 +7,5 @@
 
 N, K = map(int, input().split())
 L = list(map(int, input().split()))
-memo = []
-for i in range(1, N):           # 1번 인덱스 부터
-    memo.append(L[i] - L[i-1])  # 옆 사람과의 키 차이 저장
+memo = [L[i+1] - L[i] for i in range(N-1)] # 끝 까지 가면 인덱스에러, 옆 사람과의 키 차이 저장
 print(sum(sorted(memo)[:N-K]))  # 조의 수 만큼 키차이를 제외하고 모두 더함
