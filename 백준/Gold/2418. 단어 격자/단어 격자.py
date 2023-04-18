@@ -1,6 +1,3 @@
-dx = [-1, 1, 0, 0, -1, -1, 1, 1]
-dy = [0, 0, -1, 1, -1, 1, 1, -1]
-
 def dfs(x, y, nxt):
     global memo, arr, target, H, W, L
     if nxt == L:
@@ -9,9 +6,9 @@ def dfs(x, y, nxt):
         return memo[x][y][nxt]
 
     temp = 0
-    for i in range(8):
-        nx = x + dx[i]
-        ny = y + dy[i]
+    for dx, dy in (1, 0), (-1, 0), (0, -1), (0, 1), (1, 1), (-1, -1), (-1, 1), (1, -1):
+        nx = x + dx
+        ny = y + dy
 
         if 0 <= nx < H and 0 <= ny < W and arr[nx][ny] == target[nxt]:
             temp += dfs(nx, ny, nxt + 1)
