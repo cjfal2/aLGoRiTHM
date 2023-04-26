@@ -10,13 +10,7 @@ def find(x):
 
 
 def union(x, y):
-    x = find(x)
-    y = find(y)
-
-    if x < y:
-        rep[y] = x
-    else:
-        rep[x] = y
+    rep[find(x)] = find(y)
 
 
 N = int(input().strip())
