@@ -22,6 +22,6 @@ for i in range(M):
         union(a, b)
     else:
         print(i+1)
-        break
-else:
-    print(0)
+        quit()
+
+print(0)
