@@ -38,15 +38,16 @@ for i in range(2, N + 1):
 
 if N < 8:
     print(-1)
-else:
-    answer = [2]
+    quit()
 
-    if N % 2: # 홀수
-        answer.append(3)
-        N -= 5
-    else: # 짝수
-        answer.append(2)
-        N -= 4
 
-    gold(N)
-    print(*answer)
+answer = [2]
+if N % 2: # 홀수
+    answer.append(3)
+    N -= 5
+else: # 짝수
+    answer.append(2)
+    N -= 4
+
+gold(N)
+print(*answer)
