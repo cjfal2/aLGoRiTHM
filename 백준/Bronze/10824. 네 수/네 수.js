@@ -16,13 +16,4 @@ const input = (() => {
 const [A, B, C, D] = input().trim().split(" ");
 const num1 = parseInt(A + B)
 const num2 = parseInt(C + D)
-
-function sum(x) {
-  const add = function(y) {
-    return x + y
-  }
-  return add
-}
-
-const answer = sum(num1)
-console.log(answer(num2))
+console.log(num1 + num2)
