@@ -15,20 +15,15 @@ visited[0][0][1] = 1
 light = set()
 light.add((0, 0))
 q = [(0, 0)]
-# answer = 1
 while q:
     x, y = q.pop(0)
     temp = info.get((x, y))
-
     if temp:
         for i, j in temp:
-
             if not visited[i][j][1]:
                 visited[i][j][1] = 1
-                # answer += 1
                 if (i, j) in light:
                     visited[i][j][0] = 1
-                    # light.remove((i, j))
                     q.append((i, j))
 
     for dx, dy in (1, 0), (-1, 0), (0, 1), (0, -1):
@@ -39,8 +34,7 @@ while q:
                 q.append((nx, ny))
             else:
                 light.add((nx, ny))
-# print(answer)
-# print(light)
+
 answer = 0
 for v in visited:
     for k in v:
