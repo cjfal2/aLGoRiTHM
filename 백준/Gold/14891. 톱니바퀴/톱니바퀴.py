@@ -17,51 +17,31 @@ N극은 0 S극은 1이다.
 from collections import deque
 
 
-gears = [[]]  # 패딩 주기
+gears = [[-1 for _ in range(8)]] # 패딩 주기
 for _ in range(4):
     temp = deque(list(map(int, list(input()))))
     gears.append(temp)
+gears.append([-1 for _ in range(8)]) # 패딩 주기
 
 for _ in range(int(input())):
     what, turn = map(int, input().split())
     G = [[what, turn]]
 
-    if what == 1:
-        # 오른쪽 기어들에 영향을 주는지 확인
-        if gears[1][2] != gears[2][6]:
-            G.append([2, -turn])
-            if gears[2][2] != gears[3][6]:
-                G.append([3, turn])
-                if gears[3][2] != gears[4][6]:
-                    G.append([4, -turn])
-    elif what == 4:
-        # 왼쪽 기어들에 영향을 주는지 확인
-        if gears[3][2] != gears[4][6]:
-            G.append([3, -turn])
-            if gears[2][2] != gears[3][6]:
-                G.append([2, turn])
-                if gears[1][2] != gears[2][6]:
-                    G.append([1, -turn])
-    elif what == 2:
-        # 1번 기어에 영향을 주는지 확인
-        if gears[1][2] != gears[2][6]:
-            G.append([1, -turn])
-        # 3번 기어에 영향을 주는지 확인
-        if gears[2][2] != gears[3][6]:
-            G.append([3, -turn])
-            # 4번 기어에 영향을 주는지 확인
-            if gears[3][2] != gears[4][6]:
-                G.append([4, turn])
-    elif what == 3:
-        # 4번 기어에 영향을 주는지 확인
-        if gears[3][2] != gears[4][6]:
-            G.append([4, -turn])
-        # 2번 기어에 영향을 주는지 확인
-        if gears[2][2] != gears[3][6]:
-            G.append([2, -turn])
-            # 1번 기어에 영향을 주는지 확인
-            if gears[1][2] != gears[2][6]:
-                G.append([1, turn])
+    # 오른쪽 기어들에 영향을 주는지 확인
+    if what < 4 and gears[what][2] != gears[what+1][6]:
+        G.append([what+1, -turn])
+        if what+1 < 4 and gears[what+1][2] != gears[what+2][6]:
+            G.append([what+2, turn])
+            if what+2 < 4 and gears[what+2][2] != gears[what+3][6]:
+                G.append([what+3, -turn])
+
+    # 왼쪽 기어들에 영향을 주는지 확인
+    if what > 1 and gears[what-1][2] != gears[what][6]:
+        G.append([what-1, -turn])
+        if what-1 > 1 and gears[what-2][2] != gears[what-1][6]:
+            G.append([what-2, turn])
+            if what-2 > 1 and gears[what-3][2] != gears[what-2][6]:
+                G.append([what-3, -turn])
 
     for w, t in G:
         gears[w].rotate(t)
