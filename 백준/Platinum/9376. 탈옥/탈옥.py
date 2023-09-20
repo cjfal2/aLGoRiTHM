@@ -3,28 +3,21 @@ import sys
 input = sys.stdin.readline
 
 
-dx = [1, -1, 0, 0]
-dy = [0, 0, 1, -1]
-
-
 def bfs(x, y):
     visited = [[0 for _ in range(M)] for _ in range(N)]
     visited[x][y] = 1
-
     q = deque([(x, y)])
-
     while q:
         x, y = q.popleft()
         for dx, dy in (1, 0), (-1, 0), (0, 1), (0, -1):
             nx, ny = x + dx, y + dy
-            if N > nx >= 0 and M > ny >= 0:
-                if not visited[nx][ny]:
-                    if pan[nx][ny] == '.':
-                        visited[nx][ny] = visited[x][y]
-                        q.appendleft((nx, ny))
-                    elif pan[nx][ny] == '#':
-                        visited[nx][ny] = visited[x][y] + 1
-                        q.append((nx, ny))
+            if N > nx >= 0 and M > ny >= 0 and not visited[nx][ny]:
+                if pan[nx][ny] == '.':
+                    visited[nx][ny] = visited[x][y]
+                    q.appendleft((nx, ny))
+                elif pan[nx][ny] == '#':
+                    visited[nx][ny] = visited[x][y] + 1
+                    q.append((nx, ny))
 
     return visited
 
