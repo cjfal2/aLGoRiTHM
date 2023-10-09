@@ -1,23 +1,22 @@
 from itertools import combinations
 
-N = int(input())
-L = [list(map(int, input().split())) for _ in range(N)]
 
-ans = 9999999999
-for a in list(combinations(list(range(N)), N//2)):
-    res_num = []
-    for x in list(range(N)):
-        if x not in a:
-            res_num.append(x)
-    Q1 = 0
-    Q2 = 0
-    for x in a:
-        for y in a:
-            Q1 += L[x][y]
-    for x in res_num:
-        for y in res_num:
-            Q2 += L[x][y]
-    h = abs(Q1-Q2)
-    if ans > h:
-        ans = h
-print(ans)
+N = int(input())
+pan = [list(map(int, input().split())) for _ in range(N)]
+answer = float("INF")
+
+for start in combinations(list(range(N)), N//2):
+    link = []
+    for s in range(N):
+        if s not in start:
+            link.append(s)
+
+    t, k = 0, 0
+    for i in range(N//2 - 1):
+        for j in range(i+1, N//2):
+            t += pan[start[i]][start[j]] + pan[start[j]][start[i]]
+            k += pan[link[i]][link[j]] + pan[link[j]][link[i]]
+            
+    answer = min(answer, abs(t-k))
+
+print(answer)
