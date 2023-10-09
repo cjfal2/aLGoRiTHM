@@ -5,6 +5,8 @@ for i in range(1, N+1):
     # 끝나는 날이 퇴사일 넘어가는거 빼주기
     if i+a-1 < N+1:
         arr.append([i, i+a-1, b]) # [시작하는 날, 끝나는 날, 일당]
+
+# arr에 값이 있을때만 시작해야함, 일을 할 수 없는 경우가 있기 때문
 if arr:
     M = len(arr) # arr의 최종 길이
     dp = [0 for _ in range(M+1)] # dp 배열에 각 날짜에 받을 수 있는 최대 수당을 넣어줄 것임
