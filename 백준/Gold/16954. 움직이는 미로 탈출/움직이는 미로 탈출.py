@@ -12,7 +12,8 @@ from collections import deque
 
 
 def bfs():
-    temp = ['.', '.', '.', '.', '.', '.', '.', '.']
+    temp = '........'
+    direc = ((0, 0), (1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1))
     time = 0
     player = deque([(7, 0)])
     while player:
@@ -22,21 +23,20 @@ def bfs():
             if (x, y) == (0, 7):  # 탈출
                 return 1
 
-            for dx, dy in (0, 0), (1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1):
+            for dx, dy in direc:
                 nx, ny = x + dx, y + dy
-                if 8 > nx >= 0 and 8 > ny >= 0 and not visited[nx][ny] and pan[nx][ny] != "#":
-                    if 7 > nx and pan[nx+1][ny] != "#":
-                        visited[nx][ny] = 1
-                        player.append((nx, ny))
+                if 8 > nx > 0 and 8 > ny >= 0 and not visited[nx][ny] and pan[nx][ny] != "#" and pan[nx-1][ny] != "#":
+                    visited[nx][ny] = 1
+                    player.append((nx, ny))
 
         pan.pop()
         pan.appendleft(temp)
 
         time += 1
-        if time == 9:
+        if time == 8:
             return 1 # 벽이 없어서 성공
     return 0  # 실패
 
 
-pan = deque([list(input()) for _ in range(8)])
+pan = deque([input() for _ in range(8)])
 print(bfs())
