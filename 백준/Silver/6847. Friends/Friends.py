@@ -10,9 +10,7 @@ def bfs(s, e):
     visited[s] = 1
     q = [(s, 0)]
     while q:
-        x, cnt = q.pop(0)
-        if x == e:
-            return cnt
+        x, cnt = q.pop()
         for w in G[x]:
             if not visited[w]:
                 if w == e:
@@ -31,4 +29,3 @@ while 1:
         print("No")
     else:
         print("Yes", temp)
-
