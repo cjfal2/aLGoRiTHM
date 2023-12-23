@@ -1,7 +1,3 @@
-N = int(input())
-S = int(input())
-P = sum(list(map(int, input().split())))
-if N > P:
-    print("Padaeng_i Cry")
-else:
-    print("Padaeng_i Happy")
+N=int(input())
+input()
+print("Padaeng_i Cry" if N > sum(list(map(int,input().split()))) else "Padaeng_i Happy")
