@@ -10,7 +10,7 @@ visited[0][0] = 1
 q = [(0, 0)]
 flag = True
 while q:
-    x, y = q.pop(0)
+    x, y = q.pop()
     if x == y == N-1:
         flag = False
         break
