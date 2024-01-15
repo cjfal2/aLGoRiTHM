@@ -6,37 +6,36 @@ def decode(c, b):
     return (c - b + 26) % 26
 
 
-kod = input().strip()
-n = len(kod)
-kod = [ord(char) - ord('a') for char in kod]
+translated = [ord(char) - 97 for char in input()]
+part_of_origin = [ord(char) - 97 for char in input()]
 
-dio = input().strip()
-m = len(dio)
-dio = [ord(char) - ord('a') for char in dio]
+n, m = len(translated), len(part_of_origin)
 
-original = [0] * 1024
-kljuc = [0] * 1024
+original = [0 for _ in range(n)]
+add_key = [0 for _ in range(n)]
 
 for start in range(n - m + 1):
     for i in range(m):
-        original[start + i] = dio[i]
-        kljuc[start + i] = decode(kod[start + i], original[start + i])
+        z = start + i
+        original[z] = part_of_origin[i]
+        add_key[z] = decode(translated[z], original[z])
 
     for k in range(1, m // 2 + 1):
-        ok = 1
+        flag = 1
         for i in range(start, start + m - k):
-            if kljuc[i] != kljuc[i + k]:
-                ok = 0
+            if add_key[i] != add_key[i + k]:
+                flag = 0
+                break
 
-        if not ok:
+        if not flag:
             continue
 
         for i in range(start, start + k):
             for j in range(i % k, n, k):
-                kljuc[j] = kljuc[i]
+                add_key[j] = add_key[i]
 
         for i in range(n):
-            original[i] = decode(kod[i], kljuc[i]) + ord('a')
+            original[i] = decode(translated[i], add_key[i]) + 97
 
         print(''.join(map(chr, original[:n])))
         quit()
