@@ -1,16 +1,21 @@
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+
 def solve():
-    N, M, K = map(int, input().split())
+    N, M, K = map(int, input().strip().split())
     wall = set()
     for _ in range(K):
-        a, b = map(int, input().split())
+        a, b = map(int, input().strip().split())
         wall.add((a, b))
     da = ((-1, 0), (-1, 1), (0, -1), (0, 1), (1, 0), (1, 1))
     db = ((-1, -1), (-1, 0), (0, -1), (0, 1), (1, -1), (1, 0))
     visited = set()
     visited.add((0, 0))
-    q = [(0, 0, 0)]
+    q = deque([(0, 0, 0)])
     while q:
-        x, y, cnt = q.pop(0)
+        x, y, cnt = q.popleft()
         if (x, y) == (N-1, M-1):
             return cnt
         for dx, dy in da if x % 2 else db:
@@ -19,4 +24,6 @@ def solve():
                 visited.add((nx, ny))
                 q.append((nx, ny, cnt+1))
     return -1
+
+
 print(solve())
