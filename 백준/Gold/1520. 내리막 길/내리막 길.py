@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(10**6)
+
 N, M = map(int, input().split())
 pan = [list(map(int, input().split())) for _ in range(N)]
 visited = [[-1 for _ in range(M)] for _ in range(N)]
