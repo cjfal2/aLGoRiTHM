@@ -1,33 +1,16 @@
-# 입력 처리
 def solve():
-    K = int(input())
-    idx = 1
-    results = []
-
-    for k in range(1, K + 1):
+    for tc in range(1, int(input()) + 1):
         n, m = map(int, input().split())
-
-        # 친구 관계를 저장할 그래프
-        graph = {i: set() for i in range(1, n + 1)}
-
-        # 친구 관계
+        info = {i: set() for i in range(1, n + 1)}
         for _ in range(m):
             a, b = map(int, input().split())
+            info[a].add(b)
+            info[b].add(a)
 
-            graph[a].add(b)
-            graph[b].add(a)
+        friends = sorted(info[int(input())])
 
-        # 의심 번호
-        s = int(input())
-
-        # s의 친구 목록 및 정렬
-        friends = sorted(graph[s])
-
-        print(f"Data Set {k}:")
-        if friends:
-            print(*friends)
-        else:
-            print()
+        print(f"Data Set {tc}:")
+        print(*friends) if friends else print()
         print()
 
 
