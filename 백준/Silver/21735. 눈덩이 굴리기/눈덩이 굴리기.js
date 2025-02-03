@@ -20,8 +20,6 @@ const arr = input().split(' ').map(Number);
 let maxSize = 0;
 
 const snowballing = (now, size, time) => {
-    if (time > M) return;
-
     if (now >= N - 1 || time === M) {
         maxSize = Math.max(maxSize, size);
         return;
